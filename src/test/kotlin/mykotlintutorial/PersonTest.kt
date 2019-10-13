@@ -53,5 +53,17 @@ class PersonTest {
         assertEquals(classUnderTest.age, 1)
     }
 
+    @Test fun testLastLetterFromColorWhenThereIsNone() {
+        val classUnderTest = Person(1L, "", "", "")
+        assertEquals(classUnderTest.getLastLetter(), "")
+    }
+
+    @Test fun testLastLetterFromColor() {
+        val classUnderTest = Person(1L, "", "", "")
+        classUnderTest.color = "green"
+        assertEquals(classUnderTest.getLastLetter(), "n")
+    }
+
+
 
 }

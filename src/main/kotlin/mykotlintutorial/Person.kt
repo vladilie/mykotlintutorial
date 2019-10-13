@@ -11,6 +11,10 @@ data class Person(val id: Long,
     val age: Int
         get() = getAge(dateOfBirth)
 
+    var color: String? = null
+
+    fun getLastLetter(): String = color?.let{ it.last().toString()} ?: ""
+
     companion object {
         fun getAge(dateOfBirth: Calendar?): Int =
                 getAge(getDayOfBirth(dateOfBirth), getYearOfBirth(dateOfBirth))
