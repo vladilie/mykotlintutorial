@@ -3,13 +3,14 @@
  */
 package mykotlintutorial
 
-class App {
-    val greeting: String
-        get() {
-            return "Hello world."
-        }
-}
+import java.util.*
 
 fun main(args: Array<String>) {
-    println(App().greeting)
+    val person = Person(1L, "MR", "Vlad", "Ilie", GregorianCalendar(1971,1,1))
+    val person2 = Person(2L, "MR", "Vlad", "Ilie")
+
+    println(person)
+    println(person2)
+    println("If a person is born 2nd Dec 1982 his age is : ${Person.getAge(GregorianCalendar(1982,12,2))}")
+
 }

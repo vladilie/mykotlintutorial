@@ -6,5 +6,5 @@
  * Detailed information about configuring a multi-project build in Gradle can be found
  * in the user manual at https://docs.gradle.org/5.6.1/userguide/multi_project_builds.html
  */
-
+rootProject.buildFileName = "build.gradle.kts"
 rootProject.name = "mykotlintutorial"
