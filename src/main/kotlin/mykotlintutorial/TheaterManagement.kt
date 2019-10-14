@@ -27,28 +27,30 @@ class TheaterManagement {
         private const val RESTRICTED_VIEW = "restricted view"
         private const val BEST_VIEW = "best view"
 
+        private fun getPrice( row: Int, column: Int): BigDecimal {
+            return when {
+                row == 14 || row == 15 -> CHEAPEST_PRICE
+                column <=3 || column >= 34 -> BigDecimal(16.5)
+                row == 1 -> BigDecimal(21)
+                else -> BigDecimal(18)
+            }
+        }
+
+        private fun getDescription( row: Int, column: Int): String {
+            return when {
+                row == 14 -> CHEAP_ROW
+                row == 15 -> BACK_ROW
+                column <=3 || column >= 34 -> RESTRICTED_VIEW
+                row <= 2 -> BEST_VIEW
+                else -> STANDARD_VIEW
+            }
+        }
+
         private fun prepareSeats(): List<Seat> {
             val theSeats = mutableListOf<Seat>()
             for (row in 1..15)
-                for (column in 1..36) {
-                    var price = BigDecimal(18)
-                    var description = STANDARD_VIEW
-                    if (row == 14 || row == 15) {
-                        price = CHEAPEST_PRICE
-                        description = if (row == 14) CHEAP_ROW else BACK_ROW
-                    } else if ((row in 1..13) &&
-                            ((column in 1..3) || column in 34..36)) {
-                        price = BigDecimal(16.5)
-                        description = RESTRICTED_VIEW
-                    } else if (row == 1 || row == 2) {
-                        price = BigDecimal(21)
-                        description = BEST_VIEW
-                    }
-
-                    theSeats.add(Seat(row, column, price, description))
-
-                }
-
+                for (column in 1..36)
+                    theSeats.add(Seat(row, column, getPrice(row, column), getDescription(row, column)))
             return theSeats.toList()
         }
     }
