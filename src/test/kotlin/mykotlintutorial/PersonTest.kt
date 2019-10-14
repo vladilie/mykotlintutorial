@@ -3,33 +3,38 @@
  */
 package mykotlintutorial
 
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import java.util.*
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
+import org.junit.Test
 
 class PersonTest {
-    @Test fun testPersonCanBeBuilt() {
+    @Test
+    fun testPersonCanBeBuilt() {
         val classUnderTest = Person(1L, "", "", "")
-        assertNotNull(classUnderTest, "person should be built")
+        assertNotNull("person should be built", classUnderTest)
         assertEquals(
-                classUnderTest.toString(), "Person(id=1, title=, firstName=, surname=, dateOfBirth=null)"
+                "Person(id=1, title=, firstName=, surname=, dateOfBirth=null)",
+                classUnderTest.toString()
         )
     }
 
-    @Test fun testPersonWithNoDateOfBirth(){
+    @Test
+    fun testPersonWithNoDateOfBirth() {
         val classUnderTest = Person(1L, "", "", "")
         assertEquals(classUnderTest.age, -1)
     }
 
-    @Test fun testPersonBornThisYear(){
+    @Test
+    fun testPersonBornThisYear() {
         val year = GregorianCalendar().get(Calendar.YEAR);
         val classUnderTest = Person(1L, "", "", "",
                 GregorianCalendar(year, 1, 1))
         assertEquals(classUnderTest.age, 0)
     }
 
-    @Test fun testPersonBornLastYear(){
+    @Test
+    fun testPersonBornLastYear() {
         val year = GregorianCalendar().get(Calendar.YEAR) - 1;
         val classUnderTest = Person(1L, "", "", "",
                 GregorianCalendar(year, 1, 1))
@@ -37,14 +42,16 @@ class PersonTest {
     }
 
 
-    @Test fun testPersonBorn2YearsAgo(){
+    @Test
+    fun testPersonBorn2YearsAgo() {
         val year = GregorianCalendar().get(Calendar.YEAR) - 2;
         val classUnderTest = Person(1L, "", "", "",
                 GregorianCalendar(year, 1, 1))
         assertEquals(classUnderTest.age, 2)
     }
 
-    @Test fun testPersonBornAfterToday2YearsAgo() {
+    @Test
+    fun testPersonBornAfterToday2YearsAgo() {
         val todayDate = GregorianCalendar()
         val twoYearsAgo = todayDate.get(Calendar.YEAR) - 2;
         val day = todayDate.get(Calendar.DAY_OF_YEAR);
@@ -53,17 +60,18 @@ class PersonTest {
         assertEquals(classUnderTest.age, 1)
     }
 
-    @Test fun testLastLetterFromColorWhenThereIsNone() {
+    @Test
+    fun testLastLetterFromColorWhenThereIsNone() {
         val classUnderTest = Person(1L, "", "", "")
         assertEquals(classUnderTest.getLastLetter(), "")
     }
 
-    @Test fun testLastLetterFromColor() {
+    @Test
+    fun testLastLetterFromColor() {
         val classUnderTest = Person(1L, "", "", "")
         classUnderTest.color = "green"
         assertEquals(classUnderTest.getLastLetter(), "n")
     }
-
 
 
 }

@@ -1,15 +1,13 @@
 package mykotlintutorial
 
+import org.junit.Assert.*
 import org.junit.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
-import kotlin.test.assertTrue
 
 class TheaterManagementTest {
     @Test
     fun testCheapSeats() {
         val classUnderTest = TheaterManagement()
-        assertNotNull(classUnderTest, "theater management should be built")
+        assertNotNull( "theater management should be built",classUnderTest)
         val listCheapSeats = classUnderTest.listCheapSeats()
         assertEquals(2 * 36, listCheapSeats.size)
         listCheapSeats.forEach {
